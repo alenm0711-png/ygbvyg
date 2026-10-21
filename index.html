@@ -21,12 +21,17 @@
   <h2 id="pName"></h2>
   <p id="pType" class="type"></p>
   <p id="pDesc"></p>
+  <div id="bars"></div>
   <ul id="pFacts"></ul>
-  <div class="price" id="pPrice"></div>
-  <button id="buy"></button>
+  <div class="tools">
+    <button id="tAuto" class="on">Автовращение</button><button id="tIn">Ближе</button><button id="tOut">Дальше</button>
+    <button id="tGrid">Сетка</button><button id="tAtm" class="on">Атмосфера</button><button id="tExit">Свободный полёт</button>
+    <label>Вращение планеты <input id="tSpin" type="range" min="0" max="4" step=".1" value="1"></label>
+  </div>
+  <div class="buyrow"><div class="price" id="pPrice"></div><button id="buy"></button></div>
 </aside>
 
-<p id="hint">Тяните мышью, чтобы осмотреться · W A S D — лететь · Q / E — вверх и вниз · колесо — вперёд и назад · клик по планете — подлететь</p>
+<p id="hint">Тяните мышью, чтобы осмотреться · W A S D — лететь · Q / E — вверх и вниз · колесо — вперёд и назад · клик по планете — подлететь и осмотреть (Esc — свободный полёт)</p>
 <div id="toast"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
