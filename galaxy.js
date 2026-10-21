@@ -2,22 +2,22 @@
 const PLANETS = [
   {id:'kaira', name:'Кайра', type:'Океаническая', price:4200000, r:14, pos:[-180,10,120], color:'#2a7fff', bands:false,
    desc:'Мир сплошного океана с мягким климатом. Острова-архипелаги подходят для плавучих городов.',
-   facts:[['Радиус','7 800 км'],['Сутки','22 часа'],['Спутники','2']]},
+   rk:7800, day:22, year:410, moons:2, temp:'+18 °C', g:0.92, atmo:'азот, кислород', water:94, res:'вода, водоросли, жемчуг', hab:88, ore:40, view:80},
   {id:'veras', name:'Верас', type:'Пустынная', price:2650000, r:11, pos:[120,-20,60], color:'#e0914a', bands:false,
    desc:'Тёплые дюны и редкие оазисы. Много солнца, мало воды — зато недорого.',
-   facts:[['Радиус','6 100 км'],['Сутки','31 час'],['Спутники','1']]},
+   rk:6100, day:31, year:290, moons:1, temp:'+47 °C', g:0.71, atmo:'углекислый газ, азот', water:6, res:'песок, редкие соли', hab:35, ore:55, view:60},
   {id:'nox', name:'Нокс', type:'Ледяной гигант с кольцами', price:8900000, r:26, pos:[260,40,-140], color:'#9fd8ff', bands:true, ring:true,
    desc:'Огромная планета в ледяных кольцах. Лучший вид в галактике, жить можно только на орбите.',
-   facts:[['Радиус','24 000 км'],['Сутки','17 часов'],['Спутники','9']]},
+   rk:24000, day:17, year:5200, moons:9, temp:'−190 °C', g:1.1, atmo:'водород, метан', water:0, res:'лёд, гелий-3', hab:5, ore:78, view:100},
   {id:'ember', name:'Эмбер', type:'Вулканическая', price:1900000, r:9, pos:[-60,-30,-200], color:'#d4472a', bands:false,
    desc:'Реки лавы и богатые недра. Идеальна для добычи металлов.',
-   facts:[['Радиус','4 900 км'],['Сутки','14 часов'],['Спутники','0']]},
+   rk:4900, day:14, year:160, moons:0, temp:'+310 °C', g:0.8, atmo:'сернистые газы', water:0, res:'железо, титан, золото', hab:8, ore:95, view:70},
   {id:'lira', name:'Лира', type:'Лесная', price:5300000, r:13, pos:[-300,25,-60], color:'#3fae6a', bands:false,
    desc:'Зелёные континенты, чистый воздух и сотни рек. Подходит для семьи.',
-   facts:[['Радиус','7 200 км'],['Сутки','26 часов'],['Спутники','3']]},
+   rk:7200, day:26, year:380, moons:3, temp:'+22 °C', g:1.03, atmo:'азот, кислород', water:61, res:'древесина, плодородная почва', hab:96, ore:50, view:75},
   {id:'taur', name:'Тавр', type:'Газовый гигант', price:12500000, r:34, pos:[40,60,-420], color:'#c9a36a', bands:true,
    desc:'Самая большая планета каталога: бури размером с материк и полосы облаков.',
-   facts:[['Радиус','68 000 км'],['Сутки','10 часов'],['Спутники','27']]}
+   rk:68000, day:10, year:11800, moons:27, temp:'−140 °C', g:2.4, atmo:'водород, гелий', water:0, res:'водород, гелий-3', hab:2, ore:85, view:95}
 ];
 
 function glowTexture(color){
@@ -78,12 +78,14 @@ function createPlanets(scene){
       new THREE.MeshStandardMaterial({map:surfaceTexture(p.color,p.bands),roughness:.92}));
     m.position.set(...p.pos);
     const glow=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(p.color),blending:THREE.AdditiveBlending,depthWrite:false,opacity:.7}));
-    glow.scale.set(p.r*4.2,p.r*4.2,1); m.add(glow);
+    glow.scale.set(p.r*4.2,p.r*4.2,1); m.add(glow); p.glow=glow;
     if(p.ring){
       const ring=new THREE.Mesh(new THREE.RingGeometry(p.r*1.5,p.r*2.4,96),
         new THREE.MeshBasicMaterial({color:0xcfe9ff,transparent:true,opacity:.5,side:THREE.DoubleSide}));
       ring.rotation.x=Math.PI/2.3; m.add(ring);
     }
+    const grid=new THREE.Mesh(new THREE.SphereGeometry(p.r*1.012,28,18),new THREE.MeshBasicMaterial({color:0x7fd4ff,wireframe:true,transparent:true,opacity:.35}));
+    grid.visible=false; m.add(grid); p.grid=grid;
     m.userData.id=p.id; p.mesh=m; scene.add(m);
   });
 }
