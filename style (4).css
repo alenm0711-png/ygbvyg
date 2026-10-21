@@ -1,0 +1,41 @@
+:root{--void:#04050b;--ink:#e9ecff;--dim:#8d93b8;--line:#2b3160;--gold:#ffc46b;--ice:#7fd4ff}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--void);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+#scene{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+#scene.drag{cursor:grabbing}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+.brand{position:fixed;top:20px;left:24px;font:800 28px Syne,sans-serif;pointer-events:none}
+.brand small{display:block;margin-top:2px;font:400 13px system-ui,sans-serif;color:var(--dim);max-width:260px}
+#owned{position:fixed;top:24px;right:24px;color:var(--dim)}
+#owned b{color:var(--gold);font-size:18px}
+#catalog{position:fixed;left:24px;top:104px;width:236px;max-height:calc(100% - 190px);overflow:auto;list-style:none;padding:0}
+#catalog button{display:flex;justify-content:space-between;gap:8px;width:100%;padding:10px 12px;margin-bottom:6px;background:rgba(8,10,28,.62);border:1px solid var(--line);border-radius:10px;text-align:left;backdrop-filter:blur(6px);transition:border-color .2s,background .2s}
+#catalog button:hover,#catalog button.on{border-color:var(--ice);background:rgba(20,28,64,.8)}
+#catalog span:last-child{color:var(--gold);white-space:nowrap}
+#catalog .sold span:last-child{color:var(--dim)}
+#tags{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.tag{position:absolute;transform:translate(-50%,-140%);padding:2px 8px;border-radius:6px;background:rgba(4,5,11,.55);font-size:12px;color:var(--ink);pointer-events:auto;cursor:pointer;white-space:nowrap}
+#panel{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);padding:56px 28px 28px;background:rgba(6,8,22,.86);border-left:1px solid var(--line);backdrop-filter:blur(10px);transform:translateX(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);overflow:auto}
+#panel.open{transform:none}
+#panel h2{font:800 34px Syne,sans-serif;line-height:1.1}
+#panel .type{color:var(--ice);margin:4px 0 14px}
+#panel p{max-width:60ch}
+#pFacts{list-style:none;padding:0;margin:18px 0;border-top:1px solid var(--line)}
+#pFacts li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+#pFacts li span:first-child{color:var(--dim)}
+.price{font:800 30px Syne,sans-serif;color:var(--gold);margin:14px 0}
+#buy{width:100%;padding:14px;border:0;border-radius:12px;background:var(--gold);color:#1b1305;font-weight:700;font-size:16px;transition:transform .15s,filter .2s}
+#buy:hover{filter:brightness(1.08)}#buy:active{transform:scale(.98)}
+#buy:disabled{background:#26305f;color:var(--dim);cursor:default}
+#close{position:absolute;top:12px;right:16px;width:36px;height:36px;border:0;background:none;font-size:30px;color:var(--dim)}
+#hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 32px);text-align:center;font-size:13px;color:var(--dim);pointer-events:none}
+#toast{position:fixed;left:50%;bottom:64px;transform:translate(-50%,20px);padding:10px 18px;border-radius:10px;background:var(--gold);color:#1b1305;font-weight:600;opacity:0;pointer-events:none;transition:.3s}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:720px){
+  #catalog{top:auto;bottom:56px;left:12px;right:12px;width:auto;display:flex;gap:6px;overflow-x:auto;max-height:none}
+  #catalog li{flex:0 0 170px}#catalog button{margin:0}
+  .brand{left:14px;font-size:22px}.brand small{display:none}#owned{right:14px}
+  #hint{display:none}#panel{height:58%;top:auto;bottom:0;width:100%;border-left:0;border-top:1px solid var(--line);transform:translateY(105%)}
+}
+@media (prefers-reduced-motion:reduce){#panel,#toast{transition:none}}

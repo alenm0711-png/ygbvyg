@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Орбита — магазин планет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="tags"></div>
+
+<header class="brand">Орбита<small>Магазин планет. Летайте по галактике и выбирайте дом.</small></header>
+<div id="owned">Ваши планеты: <b id="ownedCount">0</b></div>
+<ul id="catalog"></ul>
+
+<aside id="panel" aria-live="polite">
+  <button id="close" aria-label="Закрыть">×</button>
+  <h2 id="pName"></h2>
+  <p id="pType" class="type"></p>
+  <p id="pDesc"></p>
+  <ul id="pFacts"></ul>
+  <div class="price" id="pPrice"></div>
+  <button id="buy"></button>
+</aside>
+
+<p id="hint">Тяните мышью, чтобы осмотреться · W A S D — лететь · Q / E — вверх и вниз · колесо — вперёд и назад · клик по планете — подлететь</p>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="galaxy.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
