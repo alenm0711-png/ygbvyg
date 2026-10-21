@@ -39,3 +39,15 @@ button:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
   #hint{display:none}#panel{height:58%;top:auto;bottom:0;width:100%;border-left:0;border-top:1px solid var(--line);transform:translateY(105%)}
 }
 @media (prefers-reduced-motion:reduce){#panel,#toast{transition:none}}
+
+#panel #pFacts{margin:14px 0}
+.bar{display:grid;grid-template-columns:150px 1fr 28px;gap:8px;align-items:center;margin:6px 0;font-size:13px;color:var(--dim)}
+.bar i{display:block;height:6px;border-radius:3px;background:#1a2048;overflow:hidden}
+.bar u{display:block;height:100%;background:linear-gradient(90deg,var(--ice),var(--gold));transition:width .6s}
+.bar b{color:var(--ink);text-align:right;font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.tools button{padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:rgba(20,28,64,.5);font-size:13px}
+.tools button.on{border-color:var(--ice);color:var(--ice)}
+.tools label{flex:1 0 100%;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--dim)}
+.tools input{flex:1;accent-color:var(--gold)}
+.buyrow{position:sticky;bottom:-28px;margin:0 -28px -28px;padding:6px 28px 28px;background:linear-gradient(transparent,#060816 18%)}
